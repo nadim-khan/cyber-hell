@@ -1,0 +1,84 @@
+.pagination-container {
+    position: relative;
+    display: flex;
+    flex: 1 1 auto;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    padding-bottom: 1.5rem;
+    padding-top: 1rem;
+    flex-direction: column;
+    .flex-fill {
+        display:flex;
+        flex-direction: row;
+        flex: 1 1 auto;
+        width: 100%;
+    }
+    .justify-content-center{
+        justify-content: center;
+    }
+    .pagination-extreme {
+        position: relative;
+    display: flex;
+    height: 3rem;
+    width: 13rem;
+    /* border: none; */
+    box-shadow: 0 0 10px #7b0e0e, 0 0 40px #871111, 0 0 80px #580b0b;
+    background-color: transparent;
+    border-radius: 5px;
+    justify-content: center;
+    align-items: center;
+    color: #871111;
+    font-size: calc(0.390625vw + 15px);
+    cursor: pointer;
+    transition: transform 0.3s;
+    }
+    .pagination-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 0 10px #7b0e0e, 0 0 40px #871111, 0 0 80px #580b0b;
+        padding: 10px;
+        width: -webkit-fill-available;
+        margin: 0 10px;
+        border-radius: 2px;
+    }
+    .pagination {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        align-items: center;
+        justify-content: flex-start;
+        transition: transform 0.5s;
+    }
+
+    button.pagination-extreme.pagination-left::before {
+        content: '<<';
+    }
+
+    button.pagination-extreme.pagination-left-one::before{
+        content: '<';
+    }
+
+    button.pagination-extreme.pagination-right::before {
+        content: '>>';
+    }
+
+    button.pagination-extreme.pagination-right-one::before{
+        content: '>';
+    }
+    button:hover{
+        font-size: 27px;
+        background-color: var(--colors-primary--800);
+        color: var(--colors-on_primary--500);
+        cursor: pointer;
+    }
+    button:disabled{
+        pointer-events: none;
+        opacity:0.5
+    }
+    
+}

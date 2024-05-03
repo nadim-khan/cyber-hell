@@ -1,0 +1,22 @@
+<div class="pagination-container" [ngClass]="getIndex()">
+    <div class="d-flex row flex-fill align-items-end justify-content-center">
+      <span class="pagination-info"></span>
+      <button [disabled]="pageNumber<=1" class="pagination-extreme pagination-left" (click)="buttonClick('start')">
+        <i class="fa-solid fa-angles-left"></i>
+      </button>
+      <button [disabled]="pageNumber<=1"class="pagination-extreme pagination-left-one" (click)="buttonClick('previous')">
+        <i class="fa-solid fa-angle-left"></i>
+      </button>
+      <div class="d-flex flex-fill justify-content-center">
+        <div class="pagination-wrapper">
+          Displaying {{pageSize}} items of page {{pageNumber}}
+        </div>
+      </div>
+      <button class="pagination-extreme pagination-right-one" (click)="buttonClick('next')">
+        <i class="fa-solid fa-angle-right"></i>
+      </button>
+      <button class="pagination-extreme pagination-right" (click)="buttonClick('start')">
+        <i class="fa-solid fa-angles-right"></i>
+      </button>
+    </div>
+  </div>

@@ -21,3 +21,25 @@ export interface UserRegistation  {
         }
       
 }
+
+export interface User {
+  [x: string]: any;
+  token: string;
+  user: {
+    username: string;
+    email: string;
+    mobile:number;
+    password: string;
+    re_password?: string;
+  };
+}
+
+export interface AllUsers {
+  _id: string;
+  index: number;
+  username: string;
+  mobile:number;
+  email: string;
+  colcreatedAt: string;
+  hashedPassword: string;
+}

@@ -4,6 +4,7 @@ import { LoginComponent } from './pages/login/login/login.component';
 import { LayoutLandingComponent } from './layout/layout-landing/layout-landing.component';
 import { MessageComponent } from './pages/website/message/message.component';
 import { RegisterComponent } from './pages/login/register/register.component';
+import { UserComponent } from './pages/website/user/user.component';
 
 export const routes: Routes = [
     {
@@ -12,12 +13,16 @@ export const routes: Routes = [
         pathMatch:'full'
     },
     {
-        path:'user',
+        path:'viewer',
+        component:LayoutLandingComponent
+    },
+    {
+        path:'viewer',
         component:LayoutLandingComponent,
         children:[
             {
-                path:'messages',
-                component:MessageComponent
+                path:'user',
+                component:UserComponent
             }
         ]
     },

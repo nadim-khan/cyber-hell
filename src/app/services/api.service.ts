@@ -15,30 +15,22 @@ import { Constants } from '../utils/constants/constant';
  */
 
 const API_CONFIG = {
-    API_HOST: Constants.ECART_URL, 
+    GO_REST_HOST: Constants.GO_REST_HOST, 
+    GO_REST_METHODS:Constants.GO_REST_METHODS
 };
-
-const api = 'api/';
-const ver = 'v1/';
-const admin = `admin`;
 
 /**
  * @const {object} API
  * @desc List of all API urls
  */
 const API_URLS = {
-    program_info: `aa/${ver}/program/setup`,
-    // program_info_dropdown_values: `${profile}/program/getallmasters`,
-    program_data: (id:any) => `aa/${api}/program/ss?id=${id}`,
+    getAllUsers:(pageNumber:number,pageSize:number)=> `${API_CONFIG.GO_REST_METHODS.GET_ALL_USERS}?page=${pageNumber}&per_page=${pageSize}`,
+    getAllComments: `${API_CONFIG.GO_REST_METHODS.GET_ALL_COMMENTS}`,
+    getAllPosts: `${API_CONFIG.GO_REST_METHODS.GET_ALL_POST}`,
+    getAllTodos: `${API_CONFIG.GO_REST_METHODS.GET_ALL_TODOS}`,
    
 };
 
-function constructUrl(data:any) {
-    const ret = [];
-    for (let d in data)
-        ret.push(encodeURIComponent(d) + '=' + data[d]);
-    return ret.join('&');
-}
 
 @Injectable({
     providedIn: 'root'

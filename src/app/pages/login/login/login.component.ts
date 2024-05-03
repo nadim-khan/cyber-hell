@@ -27,6 +27,7 @@ export class LoginComponent {
   ngOnInit(){
 
   }
+  
   get fc(){
     return this.loginForm.controls;
   }
