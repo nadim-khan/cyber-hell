@@ -6,6 +6,7 @@ export const Constants = {
         GET_ALL_USERS:'users',
         GET_ALL_POST:'posts',
         GET_ALL_COMMENTS:'comments',
-        GET_ALL_TODOS:'todos'
+        GET_ALL_TODOS:'todos',
+        GET_POSTS_BY_USER:'users'
     }
 }

@@ -1,7 +1,7 @@
-<div id="root">
+<div id="root" [ngClass]="getUserInfo()">
     <div class="app-skeleton">
      <!-- Head -->
-     <app-top-navigation></app-top-navigation>
+     <app-top-navigation [userDetails]="loggedInUser"></app-top-navigation>
       <div class="app-container">
         <div class="app-a">
           <app-side-navigation></app-side-navigation>
@@ -11,10 +11,10 @@
             <div class="segment-topbar">
               <div class="segment-topbar__header">
                   <span class="segment-topbar__overline segment-topbar__overline">NetWire_Seed:
-                      d869db7fe62fb07c25a0403ecaea55031744b5fb</span>
+                    {{loggedInUser?.id}}</span>
                   <h4 class="text-heading4 segment-topbar__title">
                       <span class="channel-link"><span class="channel-link__icon">#</span><span
-                              class="channel-link__element">Watson</span></span>
+                              class="channel-link__element">{{loggedInUser?.name|uppercase}} </span></span>
                   </h4>
               </div>
               <div class="segment-topbar__aside">
@@ -43,7 +43,9 @@
                   </div>
               </div>
           </div>
-          <router-outlet></router-outlet>
+          <div class="main-center-view">
+            <router-outlet></router-outlet>
+          </div>
             <div class="channel-feed__footer">
               <app-footer></app-footer>
             </div>

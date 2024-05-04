@@ -1,9 +1,13 @@
-<div class="pad">
+<div class="pad" [ngClass]="getUserInfo()">
     <div class="pad__body">
-      <h4 class="text-heading3 undefined">What's this?</h4>
-      <p class="text-paragraph1 undefined">A <em>fake</em> Slack or Discord type of app inspired by Cyberpunk
+      <h4 class="text-heading3 undefined"><span *ngIf="isUserAvailable">User Details</span> <span *ngIf="!isUserAvailable">What's this?</span></h4>
+      <p class="text-paragraph1 undefined" *ngIf="!isUserAvailable">A <em>fake</em> Slack or Discord type of app inspired by Cyberpunk
         2077. This app is static, eg. not implementing much logic.</p>
-      <p class="text-paragraph1 undefined">The goal is: showcasing a start of a UI kit. If you've played the
-        game, you' might be able to pick-up some similarities with the in-game menus.</p>
+        <p class="text-paragraph1 undefined" *ngIf="isUserAvailable">
+          Name : {{loggedInUser.name}}
+        </p>
+        <p class="text-paragraph1 undefined" *ngIf="isUserAvailable">
+          Status : {{loggedInUser.status|uppercase}}
+        </p>
     </div>
   </div>

@@ -18,7 +18,10 @@ import { LoaderService } from './services/loader.service';
 })
 export class AppComponent {
   title = 'cyberhell';
+
   constructor(private spinner: NgxSpinnerService,private loaderService:LoaderService){
+    this.loaderService.hideLoader();
+    this.spinner.hide('sp1')
     this.loaderService.loader.subscribe(data=>{
       if(data){
         this.spinner.show('sp1')

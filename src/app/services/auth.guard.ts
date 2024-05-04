@@ -9,12 +9,17 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild, CanDeactivate, CanLoad, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad  {
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+     private router: Router,
+     private toastr:ToastrService
+    ) {}
 
   canActivate(): boolean {
     return this.checkAuth();
@@ -24,13 +29,6 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad  {
     return this.checkAuth();
   }
 
-//   canDeactivate(component: ProudctRatingComponent): boolean {
-//     if (component.hasUnsavedChanges()) {
-//       return window.confirm('You have unsaved changes. Do you really want to leave?');
-//     }
-//     return true;
-//   }
-
   canLoad(): boolean {
     return this.checkAuth();
   }
@@ -38,9 +36,12 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad  {
   private checkAuth(): boolean {
     if (this.authService.isAuthenticatedUser()) {
       return true;
-    } else {
-      // Redirect to the login page if the user is not authenticated
-      this.router.navigate(['/login']);
+    } 
+    else {
+      this.toastr.error('User is InActive', 'Authentication Error', {
+        toastClass:'error-toast'
+      })
+      this.router.navigate(['/viewer/user']);
       return false;
     }
   }

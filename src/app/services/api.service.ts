@@ -24,11 +24,12 @@ const API_CONFIG = {
  * @desc List of all API urls
  */
 const API_URLS = {
+    getUserByID:(userId:number)=>`${API_CONFIG.GO_REST_METHODS.GET_POSTS_BY_USER}/${userId}`,
     getAllUsers:(pageNumber:number,pageSize:number)=> `${API_CONFIG.GO_REST_METHODS.GET_ALL_USERS}?page=${pageNumber}&per_page=${pageSize}`,
     getAllComments: `${API_CONFIG.GO_REST_METHODS.GET_ALL_COMMENTS}`,
-    getAllPosts: `${API_CONFIG.GO_REST_METHODS.GET_ALL_POST}`,
-    getAllTodos: `${API_CONFIG.GO_REST_METHODS.GET_ALL_TODOS}`,
-   
+    getAllPosts:(pageNumber:number,pageSize:number)=> `${API_CONFIG.GO_REST_METHODS.GET_ALL_POST}?page=${pageNumber}&per_page=${pageSize}`,
+    getAllTodos:(pageNumber:number,pageSize:number)=>`${API_CONFIG.GO_REST_METHODS.GET_ALL_TODOS}?page=${pageNumber}&per_page=${pageSize}`,
+    getPostsByUser:(userId:number)=>`${API_CONFIG.GO_REST_METHODS.GET_POSTS_BY_USER}/${userId}/posts`
 };
 
 

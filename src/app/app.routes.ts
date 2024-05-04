@@ -5,6 +5,9 @@ import { LayoutLandingComponent } from './layout/layout-landing/layout-landing.c
 import { MessageComponent } from './pages/website/message/message.component';
 import { RegisterComponent } from './pages/login/register/register.component';
 import { UserComponent } from './pages/website/user/user.component';
+import { PostsComponent } from './pages/website/posts/posts.component';
+import { TodoComponent } from './pages/website/todo/todo.component';
+import { AuthGuard } from './services/auth.guard';
 
 export const routes: Routes = [
     {
@@ -22,7 +25,22 @@ export const routes: Routes = [
         children:[
             {
                 path:'user',
-                component:UserComponent
+                component:UserComponent,
+            },
+            {
+                path:'post',
+                component:PostsComponent,
+                canActivate:[AuthGuard]
+            },
+            {
+                path:'post/:id',
+                component:PostsComponent,
+                canActivate:[AuthGuard]
+            },
+            {
+                path:'todo',
+                component:TodoComponent,
+                canActivate:[AuthGuard]
             }
         ]
     },

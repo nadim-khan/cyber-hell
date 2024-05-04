@@ -1,21 +1,20 @@
 <table>
     <tr>
-      <th>#</th>
-      <th>Name</th>
-      <th>Gender</th>
-      <th>Email</th>
-      <th>Status</th>
+        <th>#</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Email</th>
+        <th>Status</th>
+        <th>Action</th>
     </tr>
     <tr *ngFor="let user of userList;let i=index">
         <td>{{i}}</td>
-      <td>{{user.name}}</td>
-      <td [ngClass]="user.gender.toLowerCase()==='male'?'isMale':'isFemale'">{{user.gender}}</td>
-      <td>{{user.email}}</td>
-      <td [ngClass]="user.status.toLowerCase()==='active'?'isActive':null">{{user.status}}</td>
+        <td>{{user.name}}</td>
+        <td [ngClass]="user.gender.toLowerCase()==='male'?'isMale':'isFemale'">{{user.gender}}</td>
+        <td>{{user.email}}</td>
+        <td [ngClass]="user.status.toLowerCase()==='active'?'isActive':null">{{user.status}}</td>
+        <td><button class="button button--primary button--size-lg" (click)="setUser(user)">Login</button></td>
     </tr>
-  </table>
-  <app-pagination 
-  [pageNumber]="pageNumber" 
-  [pageSize]="pageSize"
-  (pageClick)="onPageClick($event)">
-  </app-pagination>
+</table>
+<app-pagination [pageNumber]="pageNumber" [pageSize]="pageSize" (pageClick)="onPageClick($event)">
+</app-pagination>

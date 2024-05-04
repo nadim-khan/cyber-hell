@@ -27,14 +27,14 @@ export class LoginComponent {
   ngOnInit(){
 
   }
-  
+
   get fc(){
     return this.loginForm.controls;
   }
 
   onLogin(){
     if(this.fc['email'].value==='admin'&&this.fc['password'].value==='1234'){
-      this.authService.login(this.fc['email'].value,this.fc['password'].value);
+      //this.authService.login(this.fc['email'].value,this.fc['password'].value);
     }
   }
 }

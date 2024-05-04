@@ -8,6 +8,7 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 
 import { APIInterceptor } from './utils/Interceptors/api.interceptor';
 import { ɵINTERNAL_BROWSER_DYNAMIC_PLATFORM_PROVIDERS } from '@angular/platform-browser-dynamic';
+import { provideToastr } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -20,6 +21,7 @@ export const appConfig: ApplicationConfig = {
       useClass:APIInterceptor,
       multi:true
   } ,
-    provideAnimations()
+    provideAnimations(),
+    provideToastr()
   ]
 };

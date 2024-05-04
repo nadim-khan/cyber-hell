@@ -1,44 +1,64 @@
-import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { AjaxService } from '../../../services/ajax.service';
+import { CommonModule } from '@angular/common';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { PaginationComponent } from '../../../components/pagination/pagination.component';
-import { AuthService } from '../../../services/auth.service';
 
 @Component({
-  selector: 'app-user',
+  selector: 'app-posts',
   standalone: true,
   imports: [CommonModule,RouterOutlet,PaginationComponent],
-  templateUrl: './user.component.html',
-  styleUrl: './user.component.scss'
+  templateUrl: './posts.component.html',
+  styleUrl: './posts.component.scss'
 })
-export class UserComponent {
-  userList:any;
-  pageSize:number = 10;
+export class PostsComponent {
+  postList:any;
+  pageSize:number = 100;
   pageNumber:number = 1;
   startIndex: number=1;
+  postId: any;
+  myPost:any;
   constructor(
     private apiService:ApiService,
     private ajaxService:AjaxService,
-    private authService:AuthService
+    private route: ActivatedRoute
   ){}
 
   ngOnInit(){
-   this.getAllUsers();
     
+    this.route.params.subscribe(params => {
+      this.postId = params['id']; 
+      this.getAllUserPost()
+    });
+
+    if(!this.postId){
+      this.getAllPosts()
+    }
     
   }
 
-  getAllUsers(){
+  getAllPosts(){
     const {API_CONFIG,API_URLs}=this.apiService;
-    const url = `${API_CONFIG.GO_REST_HOST}${API_URLs.getAllUsers(this.pageNumber,this.pageSize)}`;
+    const url = `${API_CONFIG.GO_REST_HOST}${API_URLs.getAllPosts(this.pageNumber,this.pageSize)}`;
     let config = {
       url:url,
       cacheKey:false
     }
     this.ajaxService.get(config).subscribe((data:any)=>{
-      this.userList = data;
+      this.postList = data;
+    })
+  }
+
+  getAllUserPost(){
+    const {API_CONFIG,API_URLs}=this.apiService;
+    const url = `${API_CONFIG.GO_REST_HOST}${API_URLs.getPostsByUser(this.postId)}`;
+    let config = {
+      url:url,
+      cacheKey:false
+    }
+    this.ajaxService.getWithCache(config).subscribe((data:any)=>{
+      this.postList =data;
     })
   }
 
@@ -63,11 +83,6 @@ export class UserComponent {
           this.pageNumber =10;
         }
       }
-      this.getAllUsers();
+      this.getAllPosts();
   }
-
-  setUser(user:any){
-    this.authService.loggedInUser = user;
-  }
-
 }

@@ -617,3 +617,26 @@ hr {
 tr:hover{
     background-color: #f321213b;
 }
+
+.error-toast,.success-toast,.info-toast{
+        background: rgba(0,0,0,.4) !important;
+        box-sizing: border-box;
+        box-shadow: 0 15px 25px rgba(0,0,0,.5);
+        border-radius: 10px;
+        padding: 0.5rem 2rem ;
+        
+}
+
+.error-toast{
+    border:1px solid #f32121;
+    color:#f32121;
+}
+
+.success-toast{
+    border:1px solid #52f321;
+    color:#52f321;
+}
+.info-toast{
+    border:1px solid #52f321;
+    color:#52f321;
+}
