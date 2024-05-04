@@ -24,12 +24,15 @@ const API_CONFIG = {
  * @desc List of all API urls
  */
 const API_URLS = {
-    getUserByID:(userId:number)=>`${API_CONFIG.GO_REST_METHODS.GET_POSTS_BY_USER}/${userId}`,
-    getAllUsers:(pageNumber:number,pageSize:number)=> `${API_CONFIG.GO_REST_METHODS.GET_ALL_USERS}?page=${pageNumber}&per_page=${pageSize}`,
-    getAllComments: `${API_CONFIG.GO_REST_METHODS.GET_ALL_COMMENTS}`,
-    getAllPosts:(pageNumber:number,pageSize:number)=> `${API_CONFIG.GO_REST_METHODS.GET_ALL_POST}?page=${pageNumber}&per_page=${pageSize}`,
-    getAllTodos:(pageNumber:number,pageSize:number)=>`${API_CONFIG.GO_REST_METHODS.GET_ALL_TODOS}?page=${pageNumber}&per_page=${pageSize}`,
-    getPostsByUser:(userId:number)=>`${API_CONFIG.GO_REST_METHODS.GET_POSTS_BY_USER}/${userId}/posts`
+    getUserByID:(userId:number)=>`${API_CONFIG.GO_REST_METHODS.USERS}/${userId}`,
+    getAllUsers:(pageNumber:number,pageSize:number)=> `${API_CONFIG.GO_REST_METHODS.USERS}?page=${pageNumber}&per_page=${pageSize}`,
+    getAllComments: `${API_CONFIG.GO_REST_METHODS.COMMENTS}`,
+    getAllPosts:(pageNumber:number,pageSize:number)=> `${API_CONFIG.GO_REST_METHODS.POSTS}?page=${pageNumber}&per_page=${pageSize}`,
+    getAllTodos:(pageNumber:number,pageSize:number)=>`${API_CONFIG.GO_REST_METHODS.TODOS}?page=${pageNumber}&per_page=${pageSize}`,
+    getPostsByUser:(userId:number)=>`${API_CONFIG.GO_REST_METHODS.USERS}/${userId}/posts`,
+    getCommentsByPostId:(postId:number)=>`${API_CONFIG.GO_REST_METHODS.POSTS}/${postId}/comments`,
+    deletePostById:(postId:number)=>`${API_CONFIG.GO_REST_METHODS.POSTS}/${postId}`,
+    deleteCommentById:(commentId:number)=>`${API_CONFIG.GO_REST_METHODS.COMMENTS}/${commentId}`
 };
 
 

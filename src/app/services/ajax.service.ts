@@ -15,6 +15,7 @@ import { HttpParams, HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { startWith, retry, catchError, tap } from 'rxjs/operators';
 import { throwError, of } from 'rxjs';
+import { Constants } from '../utils/constants/constant';
 
 export function cacheable(params = { collection: true }) {
     let isRouteChanged = sessionStorage.getItem('isRouteChanged');
@@ -359,7 +360,7 @@ export class AjaxService {
             withCredentials: false,
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
+                'Authorization': `Bearer ${Constants.TOKEN}`,
             }),
             body: config.data
         };

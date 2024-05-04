@@ -1,10 +1,50 @@
 <div class="post-main">
-    <div class="post-view" *ngFor="let post of postList">
-        <div class="post-header">
-            {{post.title}}
+    <ng-container *ngFor="let post of postList;let i=index" >
+        <div class="post-view" *ngIf="((activePostIndex || activePostIndex===0) && i===activePostIndex) || (!activePostIndex && activePostIndex!==0)" [class.commentView]="i===activePostIndex">
+            <div class="post-header">
+                {{post.title}}
+            </div>
+            <div class="post-body">
+                {{post.body}}
+            </div>
+            <div class="post-action">
+                <button class="button button--primary button--size-xl" *ngIf="(activePostIndex || activePostIndex===0)" (click)="hideComments()">
+                    Hide Comments</button>
+                    <button class="button button--primary button--size-xl" *ngIf="!(activePostIndex || activePostIndex===0)" (click)="showComments(i,post)">
+                        show Comments</button>
+                <button class="button button--primary button--delete-xl deleteButton" (click)="deletePost(post)">Delete</button>
+            </div>
         </div>
-        <div class="post-body">
-            {{post.body}}
+        <div *ngIf="i===activePostIndex">
+            <div class="channel-message-form" >
+                <div class="form-group">
+                  <label class="form-label" for="message">Post Comments</label>
+                  <div class="form-control">
+                    <textarea id="message" class="form-control" name="message" maxlength="500" [(ngModel)]="currentComments"></textarea></div>
+                </div>
+                <div class="form-footer">
+                  <button class="button button--primary button--size-xl" [disabled]="currentComments.trim().length<5" (click)="sendComment(post)" type="button"><span
+                      class="button__content" >Send</span></button>
+                </div>
+            </div>
         </div>
-    </div>
+        <ng-container *ngIf="i===activePostIndex" >
+            <div *ngFor="let comment of commentListOnPost; let i =index" class="commentsSection">
+                <div class="picture">
+                    <span>{{getShortName(comment.name)}}</span>
+                </div>
+                <div class="comment-view">
+                    <div><strong>{{comment.name}}</strong></div>
+                    <div>{{comment.body}}</div>
+                    <div>
+                        <button class="button" (click)="deleteComment(comment)">Delete</button>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        
+    </ng-container>
+   
+    
+    
 </div>

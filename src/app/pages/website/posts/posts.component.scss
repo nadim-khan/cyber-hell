@@ -1,16 +1,28 @@
 .post-main{
-    .post-view{
+    padding:0 15px;
+    .post-view,.commentsSection{
+        
         background: rgba(0,0,0,.4);
         box-sizing: border-box;
         box-shadow: 0 15px 25px rgba(0,0,0,.5);
         border-radius: 10px;
         margin: 1.2rem 0.5em;
         padding: 1rem;
+        flex:1;
         .post-header{
             font-weight: bolder;
         }
         .post-body{
             margin: 1rem;
+        }
+        .post-action{
+            top: 6.8rem;
+            left: 0em;
+            position: absolute;
+            display: none;
+            width:100%;
+            cursor: pointer;
+            justify-content: space-between;
         }
     }
 
@@ -20,5 +32,51 @@
         transition: 0.3s;
         color:var(--colors-primary--900);
         box-shadow: 0 15px 25px rgba(74, 8, 43, 0.869);
+        margin-bottom: 5.2em;
+        .post-action{
+            display: flex;
+            cursor: pointer;
+            justify-content: space-between;
+            .deleteButton{
+                border-color: red !important;
+            }
+        }
+    }
+}
+
+.commentView{
+    background-color: var(--colors-secondary--500) !important;
+    transform: scale(1.01) !important;
+    transition: 0.3s !important;
+    color:var(--colors-primary--900) !important;
+    box-shadow: 0 15px 25px rgba(74, 8, 43, 0.869) !important;
+    margin-bottom: 5.2em !important;
+    .post-action{
+        display: flex !important;
+        cursor: pointer;
+        justify-content: space-between;
+    }
+}
+
+.commentsSection{
+    display: flex;
+    .picture{
+        display: flex;
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+        background: #580e0e;
+        border-radius: 50%;
+        color: #ff0404;
+        border: 1px solid red;
+        margin-right: 15px;
+        font-weight: bold;
+    }
+    .comment-view{
+        width: 92%;
+        .button{
+            margin-top:10px;
+        }
     }
 }

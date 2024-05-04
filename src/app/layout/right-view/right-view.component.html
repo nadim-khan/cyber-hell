@@ -7,7 +7,7 @@
           Name : {{loggedInUser.name}}
         </p>
         <p class="text-paragraph1 undefined" *ngIf="isUserAvailable">
-          Status : {{loggedInUser.status|uppercase}}
+          Status : <span [ngClass]="loggedInUser.status==='active'?'activeStatus':null">{{loggedInUser.status|uppercase}}</span>
         </p>
     </div>
   </div>

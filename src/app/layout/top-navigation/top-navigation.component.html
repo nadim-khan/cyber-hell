@@ -12,7 +12,7 @@
             <li class="nav__item" *ngIf="_userDetails">
               <a class="nav__link" routerLinkActive='nav__link--active' [routerLink]="'/viewer/post/'+_userDetails.id">
                 <span class="nav__link__element">My Posts</span><span class="nav__link__element">
-                  <span *ngIf="_userDetails" class="badge">{{mypost.length}}</span></span></a>
+                  <span *ngIf="_userDetails && mypost && mypost.length" class="badge">{{mypost.length}}</span></span></a>
             </li>
             <li class="nav__item">
               <a class="nav__link " routerLinkActive='nav__link--active' [routerLinkActiveOptions]="{ exact: true }" routerLink="/viewer/user">

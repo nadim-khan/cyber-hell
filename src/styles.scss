@@ -478,6 +478,31 @@ color:var(--colors-secondary--500)
     z-index: 100;
 }
 
+.button--delete-lg,
+.button--delete-xl {
+    border-width: 2px;
+    clip-path: var(--ui-notch-path);
+    padding: 0.25rem 0.7rem 0.25rem 0.7rem;
+    border-color: red !important;
+    color:red !important;
+}
+
+.button--delete-lg::before,
+.button--delete-xl::before {
+    background-color: red !important;
+    bottom: 5px;
+    content: "";
+    display: block;
+    height: 3px;
+    /* bigger to compensate transform */
+    position: absolute;
+    right: -6px;
+    top: auto;
+    transform: rotate(-45deg);
+    width: var(--ui-notch-hypotenuse);
+    z-index: 100;
+}
+
 .button--size-xl {
     padding: 0.55rem 1.5rem 1.5rem 0.55rem;
 }
