@@ -1,13 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Subject, of, throwError, Observable, EMPTY, BehaviorSubject } from 'rxjs';
-import { switchMap, catchError } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
-import { JwtHelperService } from '@auth0/angular-jwt';
-
-
-import { AllUsers, User } from '../utils/Interfaces/interface';
-import { Constants } from '../utils/constants/constant';
-
 
 @Injectable({
   providedIn: 'root'

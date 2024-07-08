@@ -17,7 +17,6 @@ router.post('/updateUser', asyncHandler(updateUserDetails));
 
 
 async function insert(req, res, next) {
-    debugger
     console.log('Registering the User', user);
     const user = req.body;
     console.log('Registering the User', user);

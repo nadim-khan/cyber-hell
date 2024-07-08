@@ -1,0 +1,70 @@
+<div class="mainCountry">
+    <div class="filter">
+        <form class="form-search">
+            <div class="form-group">
+                <div class="form-control form-control--with-addon">
+                    <input name="query" placeholder="Search Country..." type="text" (keyup)="searchCountry()"
+                        [(ngModel)]="countrySearch" />
+                    <div class="form-control__addon form-control__addon--prefix">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M21.172 24l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z">
+                            </path>
+                        </svg>
+                    </div>
+                    
+                </div>
+            </div>
+        </form>
+        
+        <div>
+            <select name="region" id="region" [(ngModel)]="selectedRegion" (change)="onRegionChange($event)">
+                <option value="" selected disabled hidden>Select Region</option>
+                <option [value]="region" *ngFor="let region of regionList">{{region}}</option>
+            </select>
+        </div>
+        <button class="button button--default" (click)="claerFilters()">Clear Filters</button>
+
+    </div>
+
+    <div class="accordion">
+        <div class="accordion-item" *ngFor="let country of countryList;let i = index">
+            <div class="accordion-header" (click)="toggleAccordion(i)">
+                <h3>{{country|propertGetter:'flag':false}} {{country|propertGetter:'name.common':true}}</h3>
+                <span class="icon" [class.expanded]="activeIndex === i">+</span>
+            </div>
+
+            
+            <div class="accordion-content" [class.show]="activeIndex === i">
+                <div class="detailedView">
+                    <div class="flag">
+                        <img [src]="country.flags.png" alt="">
+                    </div>
+                    <div class="details">
+                        <div class="viewTop">
+                            <div class="viewTopLeft">
+                                <p>Native Name: {{country|propertGetter:'name.common':true}}</p>
+                                <p>Capital: {{country|propertGetter:'capital':false}}</p>
+                                <p>Region: {{country|propertGetter:'region':false}}</p>
+                                <p>Sub Region : {{country|propertGetter:'subregion':false}}</p>
+                            </div>
+                            <div class="viewTopRight">
+                                <p>Population : {{country|propertGetter:'population':false}}</p>
+                                <p>Currency : {{country|propertGetter:'currencies.XPF.name':true}}
+                                    ({{country|propertGetter:'currencies.XPF.symbol':true}})</p>
+                                    <p>Land Locked : {{country|propertGetter:'landlocked':false}}</p>
+                            </div>
+                        </div>
+                        <div class="viewBottom" *ngIf="country.borders && country.borders.length">
+                            Neighbour Countries
+                            <div class="borderList" *ngIf="country.borders && country.borders.length">
+                                <button class="button button--default" *ngFor="let border of country.borders" (click)="goToCountry(border)">{{border}}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="newsArticle" *ngFor="let news of newsList">
+    <h3 class="newsHeading"> {{news.title}}</h3>
+    <div class="newsAuthor"> {{news.author}} {{news.publishedAt|date}}</div>
+    <div class="imageArea">
+        <img [src]="news.urlToImage" alt="" width="600">
+    </div>
+    
+    <div class="newsHeading"> {{news.description}}</div>
+    <div class="newsHeading"> {{news.content}}</div>
+    
+    Visit Link : <a>{{news.url}}</a>
+</div>

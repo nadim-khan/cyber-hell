@@ -1,0 +1,23 @@
+.newsArticle::after {
+    background-color: var(--colors-primary--500);
+    box-shadow: var(--ui-glow);
+    bottom: 0;
+    content: "";
+    height: 1px;
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+.newsArticle{
+    padding-bottom:20px;
+    .imageArea{
+        display: flex;
+        justify-content: center;
+        margin:10px 0;
+    }
+
+    .newsAuthor{
+        font-size: 12px;
+    }
+}
