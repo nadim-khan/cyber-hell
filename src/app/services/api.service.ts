@@ -19,6 +19,7 @@ const API_CONFIG = {
     GO_REST_METHODS:Constants.GO_REST_METHODS,
     JSON_PLACEHOLDER:Constants.JSON_PLACEHOLDER,
     DOG_API:Constants.DOG_API,
+    OPEN_WEATHER_KEY:Constants.OPEN_WEATHER_KEY,
     REST_COUNTRIES:Constants.REST_COUNTRIES,
     SPACEX:Constants.SPACEX,
     OPEN_WEATHER:Constants.OPEN_WEATHER,
@@ -43,6 +44,11 @@ const API_URLS = {
     deletePostById:(postId:number)=>`${API_CONFIG.GO_REST_METHODS.POSTS}/${postId}`,
     deleteCommentById:(commentId:number)=>`${API_CONFIG.GO_REST_METHODS.COMMENTS}/${commentId}`,
     getAllCountries:`${API_CONFIG.REST_COUNTRIES}`,
+    getCoinGeckoMarket:(currencyCode:string)=>`${API_CONFIG.COIN_GECKO}coins/markets?vs_currency=${currencyCode}`,
+    getCoinGeckoCoinList:`${API_CONFIG.COIN_GECKO}coins/list`,
+    getCoinGeckoCoinById:(coinId:string)=>`${API_CONFIG.COIN_GECKO}coins/${coinId}`,
+    getJoke:(filter:string)=>`${API_CONFIG.JOKE_API}${filter}`,
+    getWeather:(location:string)=>`${API_CONFIG.OPEN_WEATHER}?q=${location}&unit=metric&APPID=${API_CONFIG.OPEN_WEATHER_KEY}`,
     getNews:(countryCode:string)=>`${API_CONFIG.NEWS_API}top-headlines?country=${countryCode}&apiKey=${Constants.NEWS_API_TOKEN}`
 };
 

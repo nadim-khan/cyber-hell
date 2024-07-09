@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, RouterModule, RouterOutlet } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-side-navigation',
@@ -11,7 +12,7 @@ import { ActivatedRoute, NavigationEnd, Router, RouterModule, RouterOutlet } fro
 })
 export class SideNavigationComponent {
   dispaly = '';
-
+  loggedInUserData:any;
   FakeApiList=[
     {id:0,apiName:'JSONPlaceholder',apiUrl:'json'},
     {id:1,apiName:'The Dog API',apiUrl:'dogApi'},
@@ -25,18 +26,23 @@ export class SideNavigationComponent {
   ];
 
   goRestApiList = [
-    {id:0,apiName:'Users',apiUrl:'json'},
-    {id:1,apiName:'All Post',apiUrl:'dogApi'},
-    {id:2,apiName:'MyPost',apiUrl:'countries'},
+    {id:0,apiName:'Users',apiUrl:'user'},
+    {id:1,apiName:'All Post',apiUrl:`post`},
+    {id:2,apiName:'MyPost',apiUrl:`post`},
   ]
   constructor(
-    private  router: Router){
+    private  router: Router, private authService:AuthService){
       router.events.subscribe((val) => {
         // see also 
-        console.log(router.url ) 
         let arr= router.url.split('/');
         this.dispaly = arr[arr.length-1];
     });
+    this.loggedInUserData = this.authService.loggerInUser;
+    if(this.loggedInUserData){
+      this.goRestApiList[2].apiUrl = `post/${this.loggedInUserData.id}`;
+    }else{
+      this.router.navigate(['/viewer/user']);
+    }
   }
 
 

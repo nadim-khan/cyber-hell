@@ -5,6 +5,7 @@ import { AjaxService } from '../../../services/ajax.service';
 import { PropertGetterPipe } from '../../../utils/pipes/propertGetter.pipe';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DataService } from '../../../services/data.service';
 
 @Component({
   selector: 'app-countries',
@@ -25,7 +26,8 @@ export class CountriesComponent {
   constructor(
     private apiService:ApiService,
     private ajaxService:AjaxService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private dataService:DataService
   ){
 
   }
@@ -35,17 +37,9 @@ export class CountriesComponent {
   }
 
   getAllCountries(){
-    const {API_CONFIG,API_URLs}=this.apiService;
-    const url = `${API_URLs.getAllCountries}`;
-    let config = {
-      url:url,
-      cacheKey:false
-    }
-    this.ajaxService.getWithCache(config).subscribe((data:any)=>{
-      this.originalCountryList = data;
-      this.countryList =data;
+    this.countryList = this.dataService.allCountryList;
+    this.originalCountryList = this.dataService.allCountryList;
       this.getRegions();
-    })
   }
 
   getRegions(){

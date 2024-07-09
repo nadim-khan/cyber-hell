@@ -42,7 +42,6 @@ export class RegisterComponent {
  }
 
  onRegister(){
-    console.log(this.registrationForm.value);
     //this.authService.register(this.registrationForm.value);
   }
 }

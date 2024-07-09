@@ -1,0 +1,13 @@
+<!-- popup.component.html -->
+<div class="modal" [class.show]="isVisible" (click)="onClose($event)">
+    <div class="modal-content pad" (click)="$event.stopPropagation()">
+     <div class="modalTitle">
+        {{title|uppercase}}<span class="close" (click)="onClose($event)">&times;</span>
+     </div> 
+      <div class="pad__body modalBody">
+        <ng-content></ng-content>
+      </div>
+      
+    </div>
+</div>
+  

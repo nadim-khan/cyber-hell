@@ -1,1 +1,103 @@
-<p>joke works!</p>
+<div class="jokeMain">
+    <div class="jokeFilter">
+        <form [formGroup]="jokeForm" (ngSubmit)="onSubmit()">
+            <div class="selectArea">
+              <label>Select category / categories:</label>
+              <div></div>
+              <div >
+                <input type="radio" formControlName="categorySelection" value="any"> Any
+                <input type="radio" formControlName="categorySelection" value="custom"> Custom
+              </div>
+              <div formGroupName="categories">
+                <input type="checkbox" formControlName="programming"> Programming
+                <input type="checkbox" formControlName="misc"> Misc
+                <input type="checkbox" formControlName="dark"> Dark
+                <input type="checkbox" formControlName="pun"> Pun
+                <input type="checkbox" formControlName="spooky"> Spooky
+                <input type="checkbox" formControlName="christmas"> Christmas
+              </div>
+              <div *ngIf="jokeForm.get('categorySelection')?.value === 'custom' && jokeForm.get('categories')?.touched && jokeForm.get('categories')?.invalid" class="error">
+                At least one category must be selected when "Custom" is chosen.
+              </div>
+              <div *ngIf="jokeForm.get('categorySelection')?.touched && jokeForm.get('categorySelection')?.invalid" class="error">
+                Category selection is required.
+              </div>
+            </div>
+          
+            <div class="selectArea">
+              <label>Select language:</label>
+              <select formControlName="language">
+                <option value="en">English</option>
+                <option value="de">German</option>
+                <option value="cs">Czech</option>
+                <option value="es">Spanish</option>
+                <option value="fr">french</option>
+                <!-- Add more languages as needed -->
+              </select>
+              <div *ngIf="jokeForm.get('language')?.touched && jokeForm.get('language')?.invalid" class="error">
+                Language selection is required.
+              </div>
+            </div>
+          
+            <div class="selectArea">
+              <label>Select flags to blacklist:</label>
+              <div formGroupName="blacklist">
+                <input type="checkbox" formControlName="nsfw"> nsfw
+                <input type="checkbox" formControlName="religious"> religious
+                <input type="checkbox" formControlName="political"> political
+                <input type="checkbox" formControlName="racist"> racist
+                <input type="checkbox" formControlName="sexist"> sexist
+                <input type="checkbox" formControlName="explicit"> explicit
+              </div>
+            </div>
+          
+            <div class="selectArea">
+              <label>Select response format:</label>
+              <input type="radio" formControlName="responseFormat" value="json"> default (json)
+              <input type="radio" formControlName="responseFormat" value="xml"> xml
+              <input type="radio" formControlName="responseFormat" value="yaml"> yaml
+              <input type="radio" formControlName="responseFormat" value="txt"> plain text
+            </div>
+          
+            <div class="selectArea">
+              <label>Select at least one joke type:</label>
+              <div formGroupName="jokeType">
+                <input type="checkbox" formControlName="single"> single
+                <input type="checkbox" formControlName="twopart"> twopart
+              </div>
+              <div *ngIf="jokeForm.errors&&jokeForm.errors.hasOwnProperty('atLeastOneJokeType') && jokeForm.get('jokeType')?.touched" class="error">
+                At least one joke type is required.
+              </div>
+            </div>
+          
+            <div class="selectArea" >
+              <label>Search for a joke that contains this search string:</label>
+              <input type="text" formControlName="searchString">
+            </div>
+          
+            <div class="selectArea">
+              <label>Search for a joke in this ID range:</label>
+              <div formGroupName="idRange">
+                <input type="number" formControlName="from"> From
+                <input type="number" formControlName="to"> To
+              </div>
+            </div>
+          
+            <div class="selectArea">
+              <label>Amount of jokes:</label>
+              <input type="number" formControlName="amount">
+              <div *ngIf="jokeForm.get('amount')?.touched && jokeForm.get('amount')?.invalid" class="error">
+                Amount of jokes is required.
+              </div>
+            </div>
+          
+            <button class="button button--primary button--size-lg" type="submit">Get Jokes</button>
+          </form>
+          
+          
+    </div>
+</div>
+
+<app-popup #popup [title]="'Jokes'" (close)="onPopupClose()">
+    <pre>{{jokeData|json}}</pre>
+  </app-popup>

@@ -673,3 +673,10 @@ select{
     border: 1px solid #e8615a;
     font-size: medium;
 }
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin-right: 10px;
+  background-color: #000;
+  color:#e8615a
+}

@@ -1,0 +1,56 @@
+.jokeMain{
+
+    
+    .jokeFilter{
+        form {
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #f15d5d;
+            border-radius: 8px;
+            background-color: transparent;
+            
+          }
+          
+          label {
+            font-weight: bold;
+            margin-top: 10px;
+          }
+          
+          input[type="checkbox"],
+          input[type="radio"] {
+            margin-right: 10px;
+            background-color: #000;
+            color:#e8615a
+          }
+
+          select{
+            margin-left:10px;
+            background-color: #000;
+          }
+          
+          input[type="text"],
+          input[type="number"]
+           {
+            padding: 8px;
+            margin-top: 5px;
+            background-color: #000;
+            color:#e8615a;
+            border:1px solid #e8615a;
+          }
+          
+          
+          
+          .selectArea{
+            margin :8px 0;
+            .error{
+                color: #e8d75a;
+            }
+          }
+
+
+        
+          
+    }
+}

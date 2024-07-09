@@ -3,7 +3,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { RightViewComponent } from '../right-view/right-view.component';
 import { SideNavigationComponent } from '../side-navigation/side-navigation.component';
 import { TopNavigationComponent } from '../top-navigation/top-navigation.component';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 
@@ -15,7 +15,16 @@ import { CommonModule } from '@angular/common';
   styleUrl: './layout-landing.component.scss'
 })
 export class LayoutLandingComponent {
-  constructor(private authService:AuthService){}
+  title:string='';
+  constructor(private authService:AuthService,
+    private  router: Router
+  ){
+    router.events.subscribe((val) => {
+      // see also 
+      let arr= router.url.split('/');
+      this.title = arr[arr.length-1];
+  });
+  }
   loggedInUser : any ;
   isUserAvailable: boolean=false;
 

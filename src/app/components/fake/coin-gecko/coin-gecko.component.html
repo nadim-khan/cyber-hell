@@ -1,1 +1,53 @@
-<p>coin-gecko works!</p>
+
+<div class="geckoMain">
+    <div class="filter">
+        <form class="form-search">
+            <div class="form-group">
+                <div class="form-control form-control--with-addon">
+                    <input name="query" placeholder="Search Country..." type="text" (keyup)="searchCountry()"
+                        [(ngModel)]="countrySearch" />
+                    <div class="form-control__addon form-control__addon--prefix">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path
+                                d="M21.172 24l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z">
+                            </path>
+                        </svg>
+                    </div>
+                    
+                </div>
+            </div>
+        </form>
+        
+        <div>
+            <select name="country" id="country" (change)="onCountryChange($event)" [(ngModel)]="selectCurrency">
+                <option value="" selected disabled hidden>Select Country</option>
+                <option [value]="country.currencyCode" *ngFor="let country of countryList">{{country.name.common}}</option>
+            </select>
+        </div>
+
+    </div>
+    <div class="table">
+        <table >
+            <tr>
+                <th>#Rank</th>
+                <th>Name</th>
+                <th>Symbol</th>
+                <th>1d Change</th>
+                <th>Current Price</th>
+                <th>Action</th>
+            </tr>
+            <tr *ngFor="let data of marketData;let i=index">
+                <td>#{{i+1}}</td>
+                <td><div style="display: flex;"><img [src]="data.image" alt="" width="24"> &nbsp;{{data.name}}</div></td>
+                <td>{{data.symbol}}</td>
+                <td [appPositiveCheck]="data.price_change_24h">{{data.price_change_24h|currency:selectCurrency}}</td>
+                <td>{{data.current_price|currency:selectCurrency}}</td>
+                <td><button class="button button--primary button--size-lg" (click)="getCoinInfo(data)">{{data.id|uppercase}} info</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <app-popup #popup [title]="'Coin Info'" (close)="onPopupClose()">
+        <pre>{{coinInfo|json}}</pre>
+      </app-popup>
+</div>

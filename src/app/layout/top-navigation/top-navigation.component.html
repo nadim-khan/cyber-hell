@@ -25,8 +25,8 @@
           </ul>
         </nav>
         <div> 
-          <select name="countries" id="cars" *ngIf="url==='news'">
-            <option value="volvo" *ngFor="let country of countryList">{{country.flag}} {{country.name.common}}</option>
+          <select name="countries" id="countries" [(ngModel)]="selectedCountry" (change)="onCountryChange($event)">
+            <option [value]="country.cca2" *ngFor="let country of countryList">{{country.flag}} {{country.name.common}}</option>
           </select>
         </div>
       </header>

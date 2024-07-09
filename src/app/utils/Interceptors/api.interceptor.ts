@@ -12,10 +12,13 @@ export class APIInterceptor implements HttpInterceptor {
     }
     intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
         this.loaderService.showLoader();
-        request = request.clone(
-            {
-                headers: request.headers.set('Authorization', `Bearer ${Constants.TOKEN}`)
-            });
+        if(!request.url.includes("blackrocktradingcurrency") ){
+            request = request.clone(
+                {
+                    headers: request.headers.set('Authorization', `Bearer ${Constants.TOKEN}`)
+                });
+        }
+        
         return next.handle(request).pipe(
             finalize(() => this.loaderService.hideLoader()),
       );
